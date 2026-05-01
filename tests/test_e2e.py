@@ -20,7 +20,7 @@ def test_end_to_end_checkout(setup):
     login.input_password('secret_sauce')
     login.click_login_button()
 
-    product.check_url_products()
+    product.check_url_products('https://www.saucedemo.com/inventory.html')
 
     # Add to cart
     product.add_product_to_cart()
@@ -34,4 +34,4 @@ def test_end_to_end_checkout(setup):
     checkout.input_information('Ahmad', 'Sofiyan', '12345')
     checkout.verify_overview_page()
     checkout.finish_checkout()
-    checkout.verify_success_order()
+    checkout.verify_success_order('Thank you for your order!')
