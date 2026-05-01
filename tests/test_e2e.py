@@ -23,7 +23,7 @@ def test_end_to_end_checkout(setup):
     product.check_url_products('https://www.saucedemo.com/inventory.html')
 
     # Add to cart
-    product.add_product_to_cart()
+    product.add_product_to_cart('Sauce Labs Backpack')
 
     # Cart
     cart.open_cart()
