@@ -22,8 +22,8 @@ class Checkout:
         with allure.step('Finish checkout'):
             self.driver.locator(Loc.btn_finish).click()
 
-    def verify_success_order(self):
+    def verify_success_order(self, succes ):
         with allure.step('Verify order success'):
             expect(self.driver.locator(Loc.txt_success)).to_have_text(
-                'Thank you for your order!'
+                succes
             )
