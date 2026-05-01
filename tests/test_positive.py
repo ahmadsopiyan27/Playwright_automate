@@ -13,7 +13,7 @@ def test_login_positif(setup):
     
         login = Login(setup)
 
-        login.input_usernamee('standard_user')
+        login.input_username('standard_user')
         login.input_password('secret_sauce')
         login.click_login_button()
 
