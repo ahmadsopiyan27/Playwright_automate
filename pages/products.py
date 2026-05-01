@@ -11,6 +11,11 @@ class Products:
         with allure.step('Verify inventory page'):
          expect(self.driver).to_have_url(url_products)
 
-    def add_product_to_cart(self):
-        with allure.step('Add product to cart'):
-            self.driver.locator('xpath=//button[@id="add-to-cart-sauce-labs-backpack"]').click()
+    def add_product_to_cart(self, product_name):
+        with allure.step(f'Add product "{product_name}" to cart'):
+
+            product_id = product_name.lower().replace(' ', '-')
+
+            locator = f'xpath=//button[@id="add-to-cart-{product_id}"]'
+
+            self.driver.locator(locator).click()
