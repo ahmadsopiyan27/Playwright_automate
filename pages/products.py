@@ -17,5 +17,4 @@ class Products:
             product_id = product_name.lower().replace(' ', '-')
 
             locator = f'xpath=//button[@id="add-to-cart-{product_id}"]'
-
             self.driver.locator(locator).click()
