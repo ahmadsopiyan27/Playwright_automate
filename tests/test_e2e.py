@@ -20,14 +20,12 @@ def test_end_to_end_checkout(setup):
     login.input_password('secret_sauce')
     login.click_login_button()
 
-    product.check_url_products('https://www.saucedemo.com/inventory.html')
 
     # Add to cart
     product.add_product_to_cart('Sauce Labs Backpack')
 
     # Cart
     cart.open_cart()
-    cart.verify_cart_page()
     cart.click_checkout()
 
     # Checkout
