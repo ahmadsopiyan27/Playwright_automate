@@ -3,12 +3,27 @@ from pages.login import Login
 from pages.products import Products
 from pages.cart import Cart
 from pages.checkout import Checkout
+import pytest
 
+
+
+@pytest.mark.parametrize(
+    "product_name",
+    [
+        pytest.param('Sauce Labs Backpack', id="backpack"),
+        pytest.param('Sauce Labs Bike Light', id="bike"),
+        pytest.param('Sauce Labs Bolt T-Shirt', id="tshirt"),
+        pytest.param('Sauce Labs Fleece Jacket', id="jacket"),
+        pytest.param('Sauce Labs Onesie', id="onesie"),
+        pytest.param('Test.allTheThings() T-Shirt (Red)', id="red_tshirt"),
+    ]
+)
 
 @allure.title('End to End Checkout')
 @allure.description('Login, add product to cart, checkout until order success')
 @allure.severity(allure.severity_level.CRITICAL)
-def test_end_to_end_checkout(setup):
+def test_end_to_end_checkout(setup, product_name):
+
 
     login = Login(setup)
     product = Products(setup)
@@ -22,7 +37,7 @@ def test_end_to_end_checkout(setup):
 
 
     # Add to cart
-    product.add_product_to_cart('Sauce Labs Backpack')
+    product.add_product_to_cart(product_name)
 
     # Cart
     cart.open_cart()
