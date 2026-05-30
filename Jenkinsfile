@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        TELEGRAM_BOT_TOKEN = '8625524856:AAEgT02-6VMV8Oxpa6HQhRLhFIiixPxI4XY'
+        TELEGRAM_BOT_TOKEN = credentials('telegram-bot-token')
         TELEGRAM_CHAT_ID   = '1277076599'
         DOCKER_IMAGE       = 'mcr.microsoft.com/playwright/python:v1.58.0-noble'
     }
