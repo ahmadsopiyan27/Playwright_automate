@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         TELEGRAM_BOT_TOKEN = credentials('telegram-bot-token')
-        TELEGRAM_CHAT_ID   = '1277076599'
+        TELEGRAM_CHAT_ID   = credentials('telegram-chat-id')
         DOCKER_IMAGE       = 'mcr.microsoft.com/playwright/python:v1.58.0-noble'
     }
 
