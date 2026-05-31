@@ -20,7 +20,7 @@ def setup():
         page = context.new_page()
 
     with allure.step('Open SauceDemo'):
-        page.goto(os.getenv("URL"))
+        page.goto(os.getenv("APP_URL"))
 
     yield page
 
