@@ -4,6 +4,13 @@ from pages.products import Products
 from pages.cart import Cart
 from pages.checkout import Checkout
 import pytest
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+username = os.getenv("TEST_USERNAME")
+password = os.getenv("TEST_PASSWORD")
 
 
 
@@ -31,8 +38,8 @@ def test_end_to_end_checkout(setup, product_name):
     checkout = Checkout(setup)
 
     # Login
-    login.input_username('standard_user')
-    login.input_password('secret_sauce')
+    login.input_username(username)
+    login.input_password(password)
     login.click_login_button()
 
 
