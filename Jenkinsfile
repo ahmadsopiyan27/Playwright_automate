@@ -24,42 +24,43 @@ pipeline {
         stage('Run Tests in Docker') {
             steps {
                 withCredentials([
-            usernamePassword(
-                credentialsId: 'saucedemo-login',
-                usernameVariable: 'TEST_USERNAME',
-                passwordVariable: 'TEST_PASSWORD'
-            )
-        ]) {
-                script {
-                    docker.image("${DOCKER_IMAGE}").inside('-u root -e HOME=/tmp') {
+                    usernamePassword(
+                        credentialsId: 'saucedemo-login',
+                        usernameVariable: 'TEST_USERNAME',
+                        passwordVariable: 'TEST_PASSWORD'
+                    )
+                ]) {
+                    script {
+                        docker.image("${DOCKER_IMAGE}").inside('-u root -e HOME=/tmp') {
 
-                        sh '''
-                        cd /var/jenkins_home/workspace/${JOB_NAME}
+                            sh '''
+                            cd /var/jenkins_home/workspace/${JOB_NAME}
 
-                        echo "=== Installing system dependencies ==="
-                        apt-get update && apt-get install -y \
-                            libgl1 \
-                            libglib2.0-0 \
-                            libsm6 \
-                            libxext6 \
-                            libxrender-dev \
-                            libgomp1 \
-                            libglvnd0 \
-                            libglx0 \
-                            curl \
-                            && rm -rf /var/lib/apt/lists/*
+                            echo "=== Installing system dependencies ==="
+                            apt-get update && apt-get install -y \
+                                libgl1 \
+                                libglib2.0-0 \
+                                libsm6 \
+                                libxext6 \
+                                libxrender-dev \
+                                libgomp1 \
+                                libglvnd0 \
+                                libglx0 \
+                                curl \
+                                && rm -rf /var/lib/apt/lists/*
 
-                        echo "=== Installing Python dependencies ==="
-                        pip install --upgrade pip
-                        pip install opencv-python-headless==4.12.0.88
-                        pip install -r requirements.txt
+                            echo "=== Installing Python dependencies ==="
+                            pip install --upgrade pip
+                            pip install opencv-python-headless==4.12.0.88
+                            pip install -r requirements.txt
 
-                        echo "=== Installing Playwright Browser ==="
-                        playwright install --with-deps
-    
-                        echo "=== Running tests ==="
-                        pytest tests -v --alluredir=allure-results
-                        '''
+                            echo "=== Installing Playwright Browser ==="
+                            playwright install --with-deps
+
+                            echo "=== Running tests ==="
+                            pytest tests -v --alluredir=allure-results
+                            '''
+                        }
                     }
                 }
             }
