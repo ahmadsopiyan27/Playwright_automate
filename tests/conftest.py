@@ -1,6 +1,13 @@
 from playwright.sync_api import sync_playwright
 import pytest
 import allure
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+username = os.getenv("TEST_USERNAME")
+password = os.getenv("TEST_PASSWORD")
 
 
 @pytest.fixture(scope='function')
@@ -13,7 +20,7 @@ def setup():
         page = context.new_page()
 
     with allure.step('Open SauceDemo'):
-        page.goto('https://www.saucedemo.com/')
+        page.goto(os.getenv("URL"))
 
     yield page
 

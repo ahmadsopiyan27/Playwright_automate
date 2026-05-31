@@ -24,3 +24,5 @@ allure-report/
 
 # MacOS
 .DS_Store
+
+.env

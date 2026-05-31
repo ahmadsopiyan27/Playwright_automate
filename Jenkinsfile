@@ -23,6 +23,13 @@ pipeline {
 
         stage('Run Tests in Docker') {
             steps {
+                withCredentials([
+            usernamePassword(
+                credentialsId: 'saucedemo-login',
+                usernameVariable: 'TEST_USERNAME',
+                passwordVariable: 'TEST_PASSWORD'
+            )
+        ]) {
                 script {
                     docker.image("${DOCKER_IMAGE}").inside('-u root -e HOME=/tmp') {
 
@@ -49,7 +56,7 @@ pipeline {
 
                         echo "=== Installing Playwright Browser ==="
                         playwright install --with-deps
-
+    
                         echo "=== Running tests ==="
                         pytest tests -v --alluredir=allure-results
                         '''
