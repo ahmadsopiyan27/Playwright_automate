@@ -29,7 +29,7 @@ password = os.getenv("TEST_PASSWORD")
 @allure.title('End to End Checkout')
 @allure.description('Login, add product to cart, checkout until order success')
 @allure.severity(allure.severity_level.CRITICAL)
-def test_end_to_end_checkout1(setup, product_name):
+def test_end_to_end_checkout2(setup, product_name):
 
 
     login = Login(setup)
