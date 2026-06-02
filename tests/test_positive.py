@@ -16,7 +16,7 @@ password = os.getenv("TEST_PASSWORD")
 @allure.title('Login Positif')
 @allure.description('Login with valid username and password')
 @allure.severity(allure.severity_level.CRITICAL)
-def test_login_positif(setup):
+def test_login_positif1(setup):
     
         login = Login(setup)
 
